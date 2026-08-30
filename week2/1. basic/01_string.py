@@ -42,7 +42,7 @@ def is_palindrome(s):
     s = s.lower()
     
     # TODO: 정제된 문자열이 회문인지 확인하세요
-    # 방법1: 문자열을 뒤집어서 비교 ([::-1] 사용)
+    # 방법1: 문자열을 뒤집어서 비교 ([n::-1] 사용)
     # if s == s[::-1]:
     #        return True
     # else:

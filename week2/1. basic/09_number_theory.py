@@ -37,7 +37,10 @@ def gcd(a, b):
     # TODO: 유클리드 호제법 구현
     # base case: b가 0이면 a 반환
     # recursive를 이용 
-    pass
+    if b == 0:
+        return a
+
+    return gcd(b, a%b)
 
 def gcd_iterative(a, b):
     """
@@ -51,7 +54,18 @@ def gcd_iterative(a, b):
     """
     # TODO: 반복문으로 구현
     # b가 0이 될 때까지 반복
-    pass
+    while b != 0:
+        tempA = a
+        tempB = b
+        a = b
+        b = tempA % tempB
+    return a
+    # 파이썬에서는 동시 할당(Tuple Unpacking) 기능을 제공하므로, 
+    # 임시 변수(tempA, tempB)를 따로 만들지 않고 한 줄로 교체할 수 있습니다.
+    # def gcd_iterative(a, b):
+    # while b != 0:
+    #     a, b = b, a % b  # 우변이 먼저 평가된 후 좌변에 동시에 할당됨
+    # return a
 
 def lcm(a, b):
     """
@@ -64,7 +78,9 @@ def lcm(a, b):
         최소공배수
     """
     # TODO: LCM 계산
-    pass
+    return a * b // gcd(a,b)
+    # 파이썬에서 나누기 연산자 하나(/)를 사용하면 결과가 실수형(float)으로 변환됩니다.
+    # 정수형 나누기 연산자인 // 를 사용하자
 
 def extended_gcd(a, b):
     """
@@ -78,10 +94,21 @@ def extended_gcd(a, b):
         (gcd, x, y) 튜플
     """
     # TODO: 확장 유클리드 호제법 구현
-    # base case: b가 0이면 (a, 1, 0) 반환    
+    # base case: b가 0이면 (a, 1, 0) 반환  
+    if b == 0:
+        return (a, 1, 0)
+
     # recursive case
+    g, x1, y1 = extended_gcd(b, a%b)
+
+    x = y1
+    y = x1 - (a // b) * y1
     # 역추적하며 x, y 계산
-    pass
+
+    return (g, x, y)
+
+
+    
 
 def is_prime(n):
     """
@@ -95,9 +122,26 @@ def is_prime(n):
     """
     # TODO: 소수 판별 구현
     # n이 2보다 작으면 False
-    # 2부터 sqrt(n)까지 나누어 떨어지는지 확인    
-    # 3부터 sqrt(n)까지 홀수만 확인
-    pass 
+    if n < 2 : return False
+
+    square = int(n**0.5)
+
+    # 방법 1: 2부터 sqrt(n)까지 나누어 떨어지는지 확인 
+    for i in range(2, square+1):
+        if n%i==0: return False
+        
+    # 방법 2: 3부터 sqrt(n)까지 홀수만 확인
+    if n%2 == 0: return False
+
+    for i in range(3, square+1, 2):
+        if n%i == 0: return False
+
+    # 아니 import 필요없다면서 sqrt 쓰라고 할 거면 math.sqrt라고 써주든가;
+    
+    # 방법 3:에라토스테네스의 체?
+
+    return True
+
 
 # 테스트 케이스
 if __name__ == "__main__":
