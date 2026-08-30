@@ -99,6 +99,7 @@ def extended_gcd(a, b):
         return (a, 1, 0)
 
     # recursive case
+    # 반환한 튜플을 각각의 변수에 넣는다 (튜플 언패킹)
     g, x1, y1 = extended_gcd(b, a%b)
 
     x = y1
@@ -130,11 +131,17 @@ def is_prime(n):
     for i in range(2, square+1):
         if n%i==0: return False
         
-    # 방법 2: 3부터 sqrt(n)까지 홀수만 확인
-    if n%2 == 0: return False
+    # # 방법 2: 3부터 sqrt(n)까지 홀수만 확인
+    # # 이게 더 효율은 좋다 (속도 빠름)
+    # # 2면 소수임
+    # if n == 2: return True
 
-    for i in range(3, square+1, 2):
-        if n%i == 0: return False
+    # # 모든 짝수들은 소수가 아님
+    # if n%2 == 0: return False
+
+    # # 그 외 남은 홀수들에 대해 소수
+    # for i in range(3, square+1, 2):
+    #     if n%i == 0: return False
 
     # 아니 import 필요없다면서 sqrt 쓰라고 할 거면 math.sqrt라고 써주든가;
     
