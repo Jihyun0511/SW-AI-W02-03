@@ -51,10 +51,11 @@ def is_valid_parentheses(s):
             stack.pop()    
     
     # TODO: 반복이 끝나면 스택이 비어있는지 확인
-    if not stack:
-        return True
-    else:
-        return False
+    # if not stack:
+    #     return True
+    # else:
+    #     return False
+    return not stack
 
 # 테스트 케이스
 if __name__ == "__main__":
