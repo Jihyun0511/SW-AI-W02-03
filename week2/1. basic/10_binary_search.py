@@ -33,17 +33,38 @@ def binary_search(arr, target):
     Returns:
         target의 인덱스 (없으면 -1)
     """
+    # 반으로 나눈 배열 중 왼쪽의 시작 인덱스는 0이고, 오른쪽의 시작 인덱스는 len(arr)-1 이다
     left = 0
     right = len(arr) - 1
-    
-    # TODO: left가 right보다 작거나 같을 때까지 반복
-    ## 중간 인덱스 계산
-    ## arr[mid]와 target 비교
-    ## 같으면 mid 반환
-    ## target이 더 크면 left = mid + 1
-    ## target이 더 작으면 right = mid - 1
-    pass
-    
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if target == arr[mid]:
+            return mid
+        elif target > arr[mid]:
+            # 중간값보다 타겟이 더 큼, 오른쪽 탐색
+            left = mid + 1
+        else:
+            # 중간값보다 타겟이 더 작음, 왼쪽 탐색
+            right = mid - 1
+
+    return -1
+
+# 재귀로도 구현할 수 있겠다
+def recursive_binary_search(arr, target, left, right):
+    if left > right:
+        return -1
+
+    mid = (left + right) // 2
+
+    if target == arr[mid]:
+        return mid
+    elif target > arr[mid]:
+        return recursive_binary_search(arr, target, mid+1, right)
+    else:
+        return recursive_binary_search(arr, target, left, mid-1)
+
     return -1
 
 # 테스트 케이스
