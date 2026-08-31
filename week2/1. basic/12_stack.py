@@ -38,16 +38,15 @@ def is_valid_parentheses(s):
     stack = []
     
     # TODO: 문자열의 각 문자를 순회
-    ## : 여는 괄호 '('면 스택에 추가
-    ## : 닫는 괄호 ')'면
-    ## 스택이 비어있으면 False 반환
-    ## 아니면 스택에서 pop
     for char in s:
+        # 여는 괄호면 스택에 append
         if char == '(':
             stack.append(char)
         elif char == ')':
+            # 닫는 괄호인데 스택이 비어있으면 그 앞에 여는 괄호가 없었다는 뜻: False
             if not stack:
                 return False
+            # 닫는 괄호이고 스택에 들어있으면 pop
             stack.pop()    
     
     # TODO: 반복이 끝나면 스택이 비어있는지 확인
