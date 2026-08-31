@@ -69,7 +69,7 @@ def bubble_sort_optimized(arr):
                 swapped = True
 
         # TODO: 교환이 없으면 이미 정렬된 것이므로 break
-        if swapped==True: break
+        if not swapped: break
 
     return arr
 
