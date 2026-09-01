@@ -38,14 +38,39 @@ def process_print_queue(jobs):
     """
     # TODO: deque로 큐 생성
     queue = deque(jobs)
-    
+    # 아니 힌트는 list로 줘놓고 import deque는 왜 해둔거야? 이해가 안 되네
     processed = []
     
     # TODO: 큐가 비어있지 않은 동안 반복
     ## 큐에서 작업 꺼내기
-    ## 작업 처리 (출력 및 리스트에 추가)
     while queue:
         current = queue.popleft()
+        print("처리:", current)
+        processed.append(current)
+    
+    return processed
+
+def process_print_list_queue(jobs):
+    """
+    프린터 작업을 순서대로 처리
+    
+    Args:
+        jobs: 작업 리스트
+    
+    Returns:
+        처리된 작업 리스트
+    """
+
+    # jobs를 바로 사용하면 원본이 훼손되므로, 이후 또 사용해야 한다면 jobs를 복사해서 사용하는 것이 권장됨
+    # 해당 문제에서는 문제 없으므로 사용하지 않았음
+    # queue = list(jobs)
+    processed = []
+    
+    ## 큐에서 작업 꺼내기
+    while jobs:
+        # pop(0)은 시간 복잡도 O(N)을 가짐
+        # while과 겹칠 시 O(N^2)가 되므로 주의!
+        current = jobs.pop(0)
         print("처리:", current)
         processed.append(current)
     
