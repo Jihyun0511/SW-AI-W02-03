@@ -59,7 +59,7 @@ def manage_grades(students):
     # # 한 줄로 해결
     # top_student = max(students, key=students.get)
     
-    return average, top_student, students[top_student]
+    return average, top_student, top_score
 
 def find_student_score(students, name):
     """
