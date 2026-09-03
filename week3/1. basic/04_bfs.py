@@ -43,19 +43,35 @@ def bfs(graph, start):
     Returns:
         방문 순서 리스트
     """
+
     visited = []
+    isVisited = [False] * len(graph)
     
     # TODO: 큐 생성 및 시작 정점 추가
-    ## 방문한 정점 집합
-    pass
+    queue = deque([start])
 
+    visited.append(start)
+    isVisited[start] = True
+    
     # TODO: 큐가 빌 때까지 반복
-    ## 큐에서 정점 꺼내기
-    ## 인접한 정점들 확인
-    ## 방문하지 않은 정점이면 큐에 추가
-    pass
+    while queue:
+        # 큐에서 이웃 확인할 정점 꺼내기
+        node = queue.popleft()
+
+        # 이웃 정점들 확인
+        for neighbor in graph[node]:
+            if not isVisited[neighbor]:
+                # 방문 안 한 놈이면 큐에 추가
+                isVisited[neighbor] = True
+                visited.append(neighbor)
+                queue.append(neighbor)
     
     return visited
+
+# 큐 안 쓰겠다고 온몸비틀기 하지 말고 걍 얌전히 큐 쓰길 바람
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
