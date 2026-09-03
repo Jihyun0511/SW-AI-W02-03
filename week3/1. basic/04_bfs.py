@@ -43,13 +43,15 @@ def bfs(graph, start):
     Returns:
         방문 순서 리스트
     """
-
+    
     visited = []
+    # 방문한 놈인지 확인하기 위한 친구
     isVisited = [False] * len(graph)
     
     # TODO: 큐 생성 및 시작 정점 추가
     queue = deque([start])
 
+    # 시작하는 놈은 방문한 놈임!
     visited.append(start)
     isVisited[start] = True
     
@@ -60,6 +62,8 @@ def bfs(graph, start):
 
         # 이웃 정점들 확인
         for neighbor in graph[node]:
+            # # 이렇게 하시면 시간복잡도가 O(n)이라 터지십니다
+            # if neighbor not in visited:
             if not isVisited[neighbor]:
                 # 방문 안 한 놈이면 큐에 추가
                 isVisited[neighbor] = True
@@ -69,8 +73,6 @@ def bfs(graph, start):
     return visited
 
 # 큐 안 쓰겠다고 온몸비틀기 하지 말고 걍 얌전히 큐 쓰길 바람
-
-
 
 
 # 테스트 케이스
