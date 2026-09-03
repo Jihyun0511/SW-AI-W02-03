@@ -74,6 +74,38 @@ def bfs(graph, start):
 
 # 큐 안 쓰겠다고 온몸비틀기 하지 말고 걍 얌전히 큐 쓰길 바람
 
+def bfs_without_queue(graph, start):
+    visited = []
+    # 방문한 놈인지 확인하기 위한 친구
+    isVisited = [False] * len(graph) 
+    
+    # 큐 대신 '현재 층'을 담을 바구니 준비
+    current_basket = [start]
+
+    # 시작하는 놈은 방문한 놈임!
+    visited.append(start)
+    isVisited[start] = True
+    
+    # 바구니가 빌 때까지(더 이상 파 내려갈 층이 없을 때까지) 반복
+    while current_basket:
+        next_basket = []  # 다음 층(이웃들)을 담아둘 새 바구니
+        
+        # 큐에서 popleft()로 하나씩 빼는 대신, 현재 층의 노드들을 한 번에 싹 훑기
+        for node in current_basket:
+            
+            # 이웃 정점들 확인
+            for neighbor in graph[node]:
+                if not isVisited[neighbor]:
+                    # 방문 안 한 놈이면 다음 바구니에 추가
+                    isVisited[neighbor] = True
+                    visited.append(neighbor)
+                    next_basket.append(neighbor)  # 큐의 append 역할
+        
+        # 현재 층을 다 훑었으니, 바구니를 다음 층으로 통째로 교체
+        current_basket = next_basket
+    
+    return visited
+
 
 # 테스트 케이스
 if __name__ == "__main__":
