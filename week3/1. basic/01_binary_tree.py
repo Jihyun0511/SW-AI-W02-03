@@ -39,25 +39,41 @@ class TreeNode:
         self.left = None
         self.right = None
 
+## result 재귀 안에서 사용
+# def preorder(root):
+#     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
+#     # 위부터, 왼쪽에서 오른쪽으로
+#     result = []
+
+#     # root가 None이면 빈 리스트 반환
+#     if root is None: return result
+    
+#     # TODO: 루트 값 추가
+#     result.append(root.value)
+    
+#     # TODO: 왼쪽 서브트리 순회
+#     result += preorder(root.left)
+#     ## 혹은:
+#     # result.extend(preorder(root.left))
+    
+#     # TODO: 오른쪽 서브트리 순회
+#     result += preorder(root.right)
+    
+#     return result
+
+## 시간복잡도 낮아질 수 있도록 내부함수로 구현, result 재귀 밖에서 사용
 def preorder(root):
-    """전위 순회: 루트 → 왼쪽 → 오른쪽"""
-    # 위부터, 왼쪽에서 오른쪽으로
     result = []
 
-    # root가 None이면 빈 리스트 반환
-    if root is None: return result
-    
-    # TODO: 루트 값 추가
-    result.append(root.value)
-    
-    # TODO: 왼쪽 서브트리 순회
-    result += preorder(root.left)
-    ## 혹은:
-    # result.extend(preorder(root.left))
-    
-    # TODO: 오른쪽 서브트리 순회
-    result += preorder(root.right)
-    
+    def preorder_helper(node):
+        if node is None: return
+
+        result.append(node.value)
+        preorder_helper(node.left)
+        preorder_helper(node.right)
+
+    preorder_helper(root)
+
     return result
 
 def inorder(root):
