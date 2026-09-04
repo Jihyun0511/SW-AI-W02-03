@@ -41,55 +41,46 @@ class TreeNode:
 
 def preorder(root):
     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
+    # 위부터, 왼쪽에서 오른쪽으로
     result = []
-    
-    # TODO: root가 None이면 빈 리스트 반환
-    pass
+
+    # root가 None이면 빈 리스트 반환
+    if root is None: return result
     
     # TODO: 루트 값 추가
-    pass
+    result.append(root.value)
     
     # TODO: 왼쪽 서브트리 순회
-    pass
+    result += preorder(root.left)
     
     # TODO: 오른쪽 서브트리 순회
-    pass
+    result += preorder(root.right)
     
     return result
 
 def inorder(root):
     """중위 순회: 왼쪽 → 루트 → 오른쪽"""
+    # 무조건 왼쪽부터
     result = []
     
-    # TODO: root가 None이면 빈 리스트 반환
-    pass
+    if root is None: return result
     
-    # TODO: 왼쪽 서브트리 순회
-    pass
-    
-    # TODO: 루트 값 추가
-    pass
-    
-    # TODO: 오른쪽 서브트리 순회
-    pass
+    result += inorder(root.left)
+    result.append(root.value)
+    result += inorder(root.right)
     
     return result
 
 def postorder(root):
     """후위 순회: 왼쪽 → 오른쪽 → 루트"""
+    # 맨 아랫줄부터, 왼>오
     result = []
     
-    # TODO: root가 None이면 빈 리스트 반환
-    pass
+    if root is None: return result
     
-    # TODO: 왼쪽 서브트리 순회
-    pass
-    
-    # TODO: 오른쪽 서브트리 순회
-    pass
-    
-    # TODO: 루트 값 추가
-    pass
+    result += postorder(root.left)
+    result += postorder(root.right)
+    result.append(root.value)
     
     return result
 
