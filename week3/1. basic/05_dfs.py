@@ -57,6 +57,7 @@ def dfs(graph, start, visited=None):
     return visited
 
 # 내부함수로 구현
+## 내부함수의 유무가 딱히 성능차이로 이어지지는 않는다
 def dfs_better(graph, start, visited=None):
     if visited is None: visited = []
 

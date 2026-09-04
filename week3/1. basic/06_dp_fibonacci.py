@@ -95,7 +95,27 @@ def fibonacci_memo(n, memo=None):
     
     return memo[n]
 
+
 ## 이것도 헬퍼 함수 만들어서 진행할 수 있겠당
+## 근데 이건 효율이 딱히 좋아지지는 않네요 안에서 도는 건 아니라서... 대신 memo가 숨겨져서 안전함!!
+def fibonacci_memo_better(n):
+
+    memo = {}
+
+    # 재귀재귀
+    def helper(x):
+        # Base case
+        if x < 2:
+            return x
+
+        if x in memo:
+            return memo[x]
+        
+        memo[x] = helper(x - 1) + helper(x - 2)
+        return memo[x]
+
+    # 재귀 호출
+    return helper(n)
 
 
 # 테스트 케이스
