@@ -43,7 +43,8 @@ def bfs(graph, start):
     Returns:
         방문 순서 리스트
     """
-    
+
+    # 방문 순서 기록용
     visited = []
     # 방문한 놈인지 확인하기 위한 친구
     isVisited = [False] * len(graph)
