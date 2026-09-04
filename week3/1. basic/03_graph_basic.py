@@ -47,15 +47,16 @@ def create_graph(vertices, edges, directed=False):
     # 초기화
     for v in range(vertices):
         graph[v] = []
+    # or you can just:
+    # graph = { v: [] for v in range(vertices)}
+    # 의식적으로 list comprehension을 사용하려고 해 봐야겠음...
     
-    # TODO: 간선 추가
-    ## 간선 추가 (u에서 v로)
-    ## 무방향 그래프면 반대 방향도 추가
-    for i, j in edges:
-        graph[i].append(j)
-
+    # 간선 추가 (u에서 v로)
+    for u, v in edges:
+        graph[u].append(v)
+        # 무방향 그래프면 반대 방향도 추가
         if not directed:
-            graph[j].append(i)
+            graph[u].append(v)
     
     return graph
 
