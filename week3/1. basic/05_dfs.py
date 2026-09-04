@@ -78,6 +78,9 @@ def dfs_better(graph, start, visited=None):
 
     return visited
 
+## 스택으로 구현?
+## 하기싫음.....
+
     
 # 테스트 케이스
 if __name__ == "__main__":
