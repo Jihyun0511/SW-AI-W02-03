@@ -45,7 +45,7 @@ def bfs(graph, start):
     """
 
     # 방문 순서 기록용
-    visited = []
+    result = []
     # 방문한 놈인지 확인하기 위한 친구
     isVisited = [False] * len(graph)
     
@@ -53,7 +53,7 @@ def bfs(graph, start):
     queue = deque([start])
 
     # 시작하는 놈은 방문한 놈임!
-    visited.append(start)
+    result.append(start)
     isVisited[start] = True
     
     # TODO: 큐가 빌 때까지 반복
@@ -68,10 +68,10 @@ def bfs(graph, start):
             if not isVisited[neighbor]:
                 # 방문 안 한 놈이면 큐에 추가
                 isVisited[neighbor] = True
-                visited.append(neighbor)
+                result.append(neighbor)
                 queue.append(neighbor)
     
-    return visited
+    return result
 
 # 큐 안 쓰겠다고 온몸비틀기 하지 말고 걍 얌전히 큐 쓰길 바람
 
