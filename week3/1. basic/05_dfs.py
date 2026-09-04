@@ -56,6 +56,27 @@ def dfs(graph, start, visited=None):
     
     return visited
 
+# 내부함수로 구현
+def dfs_better(graph, start, visited=None):
+    if visited is None: visited = []
+
+    # 아까 bfs 풀 때는 배열[그래프길이]=False 해놓고 set 쓴 이유:
+    ## 정점 이름이 연속된 숫자가 아니면... 10, 20, 30 따위면
+    ## 3개짜리 배열 만들어놓고 배열[10] 해서 터질 수도...
+    visited_set = set(visited)
+
+    def dfs_helper(node):
+        visited.append(node)
+        visited_set.add(node)
+        
+        for v in graph[node]:
+            # set은 내부적으로 해시테이블이라 찾을 때 시간복잡도가 O(1)
+            if v not in visited_set:
+                dfs_helper(v)
+
+    dfs_helper(start)
+
+    return visited
 
     
 # 테스트 케이스
