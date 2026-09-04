@@ -52,6 +52,8 @@ def preorder(root):
     
     # TODO: 왼쪽 서브트리 순회
     result += preorder(root.left)
+    ## 혹은:
+    # result.extend(preorder(root.left))
     
     # TODO: 오른쪽 서브트리 순회
     result += preorder(root.right)
