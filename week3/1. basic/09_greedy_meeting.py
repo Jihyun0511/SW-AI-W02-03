@@ -50,6 +50,14 @@ def select_meetings(meetings):
         if start >= end_time:
             selected.append((start, end))
             end_time = end
+
+    # for meeting in meetings:
+    #     start = meeting[0]  # 인덱스 0: 시작 시간
+    #     end = meeting[1]    # 인덱스 1: 종료 시간
+        
+    #     if start >= end_time:
+    #         selected.append(meeting)  # meeting 튜플 자체를 그대로 넣음
+    #         end_time = end
     
     return len(selected), selected
 
