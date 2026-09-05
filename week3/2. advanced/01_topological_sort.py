@@ -71,6 +71,13 @@ def topological_sort(vertices, edges):
 
             if in_degree[neighbor] == 0:
                 queue.append(neighbor)
+
+    
+    ### !!! 사이클이라면? 위상 정렬으로는 아무것도 못한다
+    ### (0, 1) (1, 2) (2, 0) 이면 모두 방향인데, 0 - 1 - 2 - 0 ... 무한루프
+    ### 그래서 위상 정렬은 방향성 있고, 사이클 없는 그래프 DAG(Directed Acrylic Graph)에서만 사용
+    if len(result) != vertices:
+        return []
     
     return result
 
