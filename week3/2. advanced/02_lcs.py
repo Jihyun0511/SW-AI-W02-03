@@ -32,37 +32,53 @@ lcs_length(s1: str, s2: str) -> int
 
 
 def lcs_length(s1: str, s2: str) -> int:
-    """
-    s1, s2 의 가장 긴 공통 부분수열의 길이를 반환.
-    어느 한쪽이라도 비어 있으면 0 을 반환합니다.
-    """
-    # TODO: 빈 문자열 처리
-    # TODO: (len(s1)+1) x (len(s2)+1) 크기의 2차원 dp 배열을 0 으로 초기화
-    # TODO: 이중 반복문으로 점화식에 따라 dp 채우기
-    # TODO: dp[len(s1)][len(s2)] 반환
-    pass
+  """
+  s1, s2 의 가장 긴 공통 부분수열의 길이를 반환.
+  어느 한쪽이라도 비어 있으면 0 을 반환합니다.
+  """
+  # TODO: 빈 문자열 처리
+  if s1 is None or s2 is None:
+    return 0
+  
+  m = len(s1)
+  n = len(s2)
+  
+  # TODO: (len(s1)+1) x (len(s2)+1) 크기의 2차원 dp 배열을 0 으로 초기화
+  dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+  # TODO: 이중 반복문으로 점화식에 따라 dp 채우기
+  for i in range(1, m + 1):
+    for j in range(1, n + 1):
+      # 문자가 같다면 대각선 왼쪽 위 값에 +1
+        if s1[i-1] == s2[j-1]:
+           dp[i][j] = dp[i-1][j-1] + 1
+        # 문자가 다르다면 위쪽이나 왼쪽 값 중 큰 값 유지
+        else:
+          dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+  # TODO: dp[len(s1)][len(s2)] 반환
+  return dp[m][n]
 
 
 if __name__ == "__main__":
-    print("[테스트 1] 한쪽이 빈 문자열")
-    print(f'  s1="", s2="abc" -> LCS 길이={lcs_length("", "abc")}')
-    print()
+  print("[테스트 1] 한쪽이 빈 문자열")
+  print(f'  s1="", s2="abc" -> LCS 길이={lcs_length("", "abc")}')
+  print()
 
-    print("[테스트 2] 두 문자열이 동일")
-    print(f'  s1="abc", s2="abc" -> LCS 길이={lcs_length("abc", "abc")}')
-    print()
+  print("[테스트 2] 두 문자열이 동일")
+  print(f'  s1="abc", s2="abc" -> LCS 길이={lcs_length("abc", "abc")}')
+  print()
 
-    print("[테스트 3] 공통 원소가 전혀 없음")
-    print(f'  s1="abc", s2="xyz" -> LCS 길이={lcs_length("abc", "xyz")}')
-    print()
+  print("[테스트 3] 공통 원소가 전혀 없음")
+  print(f'  s1="abc", s2="xyz" -> LCS 길이={lcs_length("abc", "xyz")}')
+  print()
 
-    print("[테스트 4] 표준 예시 1")
-    print(f'  s1="abcde", s2="ace" -> LCS 길이={lcs_length("abcde", "ace")}')
-    print()
+  print("[테스트 4] 표준 예시 1")
+  print(f'  s1="abcde", s2="ace" -> LCS 길이={lcs_length("abcde", "ace")}')
+  print()
 
-    print("[테스트 5] 표준 예시 2")
-    print(f'  s1="AGGTAB", s2="GXTXAYB" -> LCS 길이={lcs_length("AGGTAB", "GXTXAYB")}')
-    print()
+  print("[테스트 5] 표준 예시 2")
+  print(f'  s1="AGGTAB", s2="GXTXAYB" -> LCS 길이={lcs_length("AGGTAB", "GXTXAYB")}')
+  print()
 
-    print("[테스트 6] 두 LCS 후보가 길이가 같은 경우")
-    print(f'  s1="ABCBDAB", s2="BDCABA" -> LCS 길이={lcs_length("ABCBDAB", "BDCABA")}')
+  print("[테스트 6] 두 LCS 후보가 길이가 같은 경우")
+  print(f'  s1="ABCBDAB", s2="BDCABA" -> LCS 길이={lcs_length("ABCBDAB", "BDCABA")}')
