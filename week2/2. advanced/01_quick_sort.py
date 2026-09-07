@@ -39,17 +39,16 @@ def partition(arr, low, high):
     
     # TODO: i는 작은 원소들의 마지막 인덱스를 추적
     i = low - 1
-    # 음? 왜 빼지?
+    # i = low 해버리면 low에 있는놈은 피벗보다 작다는 뜻이니까 피해가야됨
     
-    # TODO: low부터 high-1까지 순회하면서
-    ## 현재 원소가 피벗보다 작거나 같으면:
-    ##   1. i를 1 증가
-    ##   2. arr[i]와 arr[j]를 교환
     for j in range(low, high):
+        # 피벗보다 작거나 같으면
         if arr[j] <= pivot:
             i += 1
+            # 교환
             arr[i], arr[j] = arr[j], arr[i]
 
+    # 피벗을 두 그룹 사이에 넣고, 거기 있던 놈 맨 뒤로 내쫓음 zz
     arr[i + 1], arr[high] = arr[high], arr[i + 1]
     
     return i + 1
