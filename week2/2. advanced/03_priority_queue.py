@@ -41,14 +41,21 @@ def process_emergency_room(patients):
     
     
     # TODO: 모든 환자를 힙에 추가
-    pass
+    # 우선순위 기준으로 정렬해야 함
+    ## 언패킹해서 튜플 순서 뒤집어 넣기
+    for name, priority in patients:
+        heapq.heappush(heap, (priority, name))
         
     processed = []
     
     # TODO: 힙이 비어있지 않은 동안 반복
     ## 힙에서 우선순위가 가장 높은 환자 꺼내기
     ## 환자 처리
-    pass
+    while heap:
+        patient = (heapq.heappop(heap))
+        # processed.append((patient[1], patient[0]))
+        print(f"처리: {patient[1]} (우선순위: {patient[0]})")
+        processed.append(patient[1])
         
     return processed
 
