@@ -81,6 +81,38 @@ def topological_sort(vertices, edges):
     
     return result
 
+def topological_sort_dfs_simple(vertices, edges):
+    """
+    위상 정렬 (DFS 알고리즘 - 사이클 없음 가정)
+    """
+    # 초기화
+    graph = {i: [] for i in range(vertices)}
+    for u, v in edges:
+        graph[u].append(v)
+
+    # 방문 여부 확인
+    isVisited = [False] * vertices
+    stack = []
+
+    def dfs(node):
+        isVisited[node] = True  # 방문 처리
+
+        for neighbor in graph[node]:
+            if not isVisited[neighbor]:
+                dfs(neighbor)
+        
+        # 갈 수 있는 곳 다 가면 스택에 추가
+        stack.append(node)
+
+    # 모든 정점 순회
+    for i in range(vertices):
+        if not isVisited[i]:
+            dfs(i)
+
+    # 뒤집어서 반환
+    return stack[::-1]
+
+
 # 테스트 케이스
 if __name__ == "__main__":
     # 과목 선수과목 예제
